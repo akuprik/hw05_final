@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+    {% if post %}
+        Редактировать запись
+    {% else %}
+        Добавить запись
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+    {% if post  %}
+        Редактировать запись
+    {% else %}
+        Добавить запись
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" enctype="multipart/form-data" action="{% if post %}/{{ post.author }}/{{ post.pk }}/edit/{% else %}{% url 'new' %}{% endif %}">
+        {% csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        {% if post %}
+            <input type="submit" value="Сохранить">
+        {% else %}
+            <input type="submit" value="Добавить">
+        {% endif %}
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Записи сообщества {{ group.title }}{% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+    <div class="row">
+            <div class="col-md-3 mb-3 mt-1">
+                    {% include 'includes/author_card.html' with profile_user=profile_user post_count=post_count %}
+            </div>
+
+            <div class="col-md-9">
+                {% block post %}
+                {% for post in page %}
+                        {% include 'includes/post_card.html' with post=post show_add_comment_link=True %}
+                    {% endfor %}
+                    {% if page.has_other_pages %}
+                        {% include "includes/paginator.html" with items=page paginator=paginator %}
+                    {% endif %}
+                {% endblock %}
+            </div>
+    </div>
+
+{% endblock %}

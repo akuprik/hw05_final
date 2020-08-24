@@ -1,0 +1,4 @@
+{% extends "profile.html" %}
+{% block post %}
+    {% include 'includes/post_card.html' with post=post comments=comments commentform=commentform show_add_comment_link=False %}
+{% endblock %}
