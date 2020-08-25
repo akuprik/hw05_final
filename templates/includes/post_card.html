@@ -32,7 +32,7 @@
                                             </div>
                                                 <small class="text-muted">{{ post.pub_date|date:"d M Y" }}</small>
                                         </div>
-                                        {% if not show_add_comment_link %}
+                                        {% if show_comments %}
                                             {% include "includes/comments.html" with items=comments form=commentform %}
                                         {% endif %}
 

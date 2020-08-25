@@ -1,17 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Записи сообщества {{ group.title }}{% endblock %}
-{% block header %}{% endblock %}
+{% block title %}Лента подписок{% endblock %}
+{% block header %}Лента подписок{% endblock %}
 {% block content %}
-    <h1>{{ group.title }}</h1>
-    <p>
-        {{ group.description }}
-    </p>
+    {% include "includes/menu.html" with follow=True  %}
+    {% load cache %}
+    {% cache 20 index page post_count_in_base %}
     {% for post in page %}
         {% include "includes/post_card.html" with post=post show_comments=False %}
     {% endfor %}
     {% if page.has_other_pages %}
         {% include "includes/paginator.html" with items=page paginator=paginator %}
     {% endif %}
-
+    {% endcache %}
 
 {% endblock %}
