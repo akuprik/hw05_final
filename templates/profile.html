@@ -4,23 +4,23 @@
 {% block content %}
     <div class="row">
             <div class="col-md-3 mb-3 mt-1">
-                    {% include 'includes/author_card.html' with profile_user=profile_user post_count=post_count %}
-
-                    <li class="list-group-item">
-                        {% if following %}
-                        <a class="btn btn-lg btn-light"
-                                href="{% url 'profile_unfollow' profile_user%}" role="button">
-                                Отписаться
-                        </a>
-                        {% else %}
-                        <a class="btn btn-lg btn-primary"
-                                href="{% url 'profile_follow' profile_user %}" role="button">
-                        Подписаться
-                        </a>
-                        {% endif %}
-                    </li>
+                    {% include 'includes/author_card.html' with profile_user=profile_user %}
+                    {% if profile_user.pk != user.pk %}
+                        <li class="list-group-item">
+                            {% if following %}
+                            <a class="btn btn-lg btn-light"
+                                    href="{% url 'profile_unfollow' profile_user%}" role="button">
+                                    Отписаться
+                            </a>
+                            {% else %}
+                            <a class="btn btn-lg btn-primary"
+                                    href="{% url 'profile_follow' profile_user %}" role="button">
+                            Подписаться
+                            </a>
+                            {% endif %}
+                        </li>
+                    {% endif %}
             </div>
-
             <div class="col-md-9">
                 {% block post %}
                 {% for post in page %}

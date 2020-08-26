@@ -73,7 +73,6 @@ def profile(request, username):
     page = paginator.get_page(request.GET.get('page'))
     return render(request, 'profile.html',
                   {"profile_user": user,
-                   'post_count': paginator.count,
                    'page': page,
                    'paginator': paginator,
                    'following': not is_not_folower(request.user, username),
@@ -89,7 +88,6 @@ def post_view(request, username, post_id):
     commentform = CommentForm()
     return render(request, 'post.html',
                   {"profile_user": user,
-                   'post_count': post_count,
                    'post': post,
                    'comments': comments,
                    'commentform': commentform,
